@@ -1,8 +1,8 @@
 # Parley - Dialogflow Assistant
 
-This is the only package that you would need when building chatbots with Dialogflow. You can build awesome Fulfillments for the bots (no need of firebase functions!) with your own nodeJS servers.
+This is the only package that you would need when building chatbots with Dialogflow. You can build awesome Fulfillments for the bots with your own nodeJS servers (no need of firebase functions!)
 
-Built with TypeScript, the whole package is extremely well documented. You'll get access easily to all the parameters sent by Dialogflow's Fulfillment JSON through intellisense
+Built with **TypeScript**, the whole package is extremely well documented. You'll get access easily to all the parameters sent by Dialogflow's Fulfillment JSON through intellisense
 
 ## What you get?
 
@@ -37,23 +37,95 @@ Built with TypeScript, the whole package is extremely well documented. You'll ge
 ### Installation
 
 ```powershell
+npm i parley-with-dialogflow
 ```
 
 ### Import
 
 TypeScript
 ```ts
+import * as Parley from "parley-with-dialogflow";
+// or import Parley = require('parley-with-dialogflow');
 ```
 
 JavaScript
 ```js
+var Parley = require('parley-with-dialogflow')
 ```
 
 ### Usage
 
-```js
+Examples with [expressJS](https://expressjs.com/)
 
+**Request and Response**
+```js
+// Within the POST request handler of your server (that route that handes dialogflow fulfillments)
+var bodyParser = require('body-parser');
+
+app.use(bodyParser.json());
+
+app.post('/dialog', (req, res, next) => {
+   let parley = Parley.parse(req.body); 
+   /*If you are not using express, make sure that you give the JSON from POST directly
+    the .parse() parses the JSON and returns a sandbox object with which you can perform
+    all the operations you can ever dream of*/
+   
+   if(parley.intentName == 'Intent 1'){
+      let name = parley.params['name']; // Gets the parameter from Dialogflow, under the name 'name'
+      parley.addText('Hello There' + name); // Adds a text response
+      parley.addText('Thank you for coming to Intent 1'); // Adds another text response
+      parley.addOutputContext('await-intent-2'); // Adds an output context with the name 'await-intent-2'
+      parley.addSuggestions(["I'll proceed", "I'll Stop"]); // Adds quick reply options for the user
+   } else if(parley.intentName == 'Intent 2'){
+      parley.addText('Thank you for coming to Intent 2'); // Adds a text response
+      parley.endConversation(); // Ends the conversation (in case of user in google Assistant, this is required)
+   } else if(parley.intentName == 'Fallback 1'){
+      parley.addText("I can't understand. Please rephrase your answer"); // Adds a text response
+      parey.addAllInputContexts();
+      //This will Make sure the user is given chances if he enters wrong (without contexts with lifetime)
+   }
+   
+   let response = parley.getResponse(); 
+   // returns the formed response JSON in the Dialogflow format that applies to any chat platform
+   
+   res.send(response); // you send the response JSON back to Dialogflow
+});
 ```
+
+**Using the Session Storage**
+
+```js
+// Within the POST request handler of your server (that route that handes dialogflow fulfillments)
+var bodyParser = require('body-parser');
+
+app.use(bodyParser.json());
+
+app.post('/dialog', (req, res, next) => {
+   let parley = Parley.parse(req.body);
+   let store = parley.getStorageTool(sessionduration); // Get the Storage sandbox for all session storage related operations
+   
+   if(parley.intentName == 'Intent 1'){
+      store.startOver(); // This is put in all the starting intents to 'startOver' the session storage
+      let name = parley.params['name'];
+      store.put('username', name);
+      // Stores the name parameter safely in this session and can be accessed in the same session and within the session duration
+      
+      parley.addText('Hello ' + name);
+   } else if(parley.intentName == 'Intent 2'){
+      let name = store.get('username'); // retrieve the parameter within the same session easiy (we can now get rid of context parameters)
+      parley.addText("That's great to hear " + name);
+      parley.endConversation();
+   }
+   
+   let response = parley.getResponse();
+   res.send(response);
+});
+
+// Like this you can get all the parameters sent by Dialogflow
+```
+
+**We've barely scratched the surface**
+*Explore with intellisense to discover all the features*
 
 ## Authors
 
