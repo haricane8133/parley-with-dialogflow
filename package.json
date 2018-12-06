@@ -1,6 +1,6 @@
 {
   "name": "parley-with-dialogflow",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "THE best nodeJS package you can have, for a Dialogflow V2 Fulfillment is now available for you in NPM",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -19,5 +19,42 @@
   "homepage": "https://github.com/haricane8133/parley-with-dialogflow#readme",
   "dependencies": {
     "sstorer": "^1.0.4"
-  }
+  },
+  "keywords": [
+    "Dialogflow",
+    "Dialogflow Agent",
+    "Dialogflow Client",
+    "Dialogflow nodeJS",
+    "Dialogflow nodeJS Client",
+    "Dialogflow all platforms",
+    "parley",
+    "parley dialogflow",
+    "json",
+    "Dialogflow json handler",
+    "Dialogflow request handler",
+    "chatbot",
+    "chatbot Agent",
+    "chatbot Client",
+    "chatbot nodeJS",
+    "chatbot nodeJS Client",
+    "chatbot all platforms",
+    "parley chatbot",
+    "json",
+    "chatbot json handler",
+    "chatbot request handler",
+    "chatbot maker",
+    "Dialogflow chatbot",
+    "dialogflow helper",
+    "chatbot helper",
+    "dialogflow fulfillment",
+    "fulfillment",
+    "chatbot fulfillment",
+    "dialogflow chatbot fulfillment",
+    "dialogflow chatbot fulfillment nodeJS",
+    "dialogflow fulfillment nodeJS",
+    "Hari",
+    "haricane",
+    "haricane8133",
+    "Hari Rajesh"
+  ]
 }
