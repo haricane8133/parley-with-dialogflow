@@ -1,0 +1,23 @@
+{
+  "name": "parley-with-dialogflow",
+  "version": "1.0.0",
+  "description": "THE best nodeJS package you can have, for a Dialogflow V2 Fulfillment is now available for you in NPM",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/haricane8133/parley-with-dialogflow.git"
+  },
+  "author": "Hari.R aka haricane8133",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/haricane8133/parley-with-dialogflow/issues"
+  },
+  "homepage": "https://github.com/haricane8133/parley-with-dialogflow#readme",
+  "dependencies": {
+    "sstorer": "^1.0.4"
+  }
+}
