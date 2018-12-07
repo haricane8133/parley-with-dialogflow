@@ -1,6 +1,6 @@
 {
   "name": "parley-with-dialogflow",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "THE best nodeJS package you can have, for a Dialogflow V2 Fulfillment is now available for you in NPM",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",

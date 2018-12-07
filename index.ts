@@ -235,6 +235,8 @@ class DialogflowRequest {
 				this.queryText = this.JSON.queryResult.queryText;
 			} catch { }
 			try {
+				this.contexts = [];
+				this.contextParams = {};
 				for (let context of this.JSON.queryResult.outputContexts) {
 					this.contexts.push(context);
 					// format is {"name":"projects/<projectid>/agent/sessions/<sessionid>/contexts/<name>", "lifespanCount":"", "parameters":{"paramname":"paramvalue"}}
